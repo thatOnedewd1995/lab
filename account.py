@@ -17,11 +17,13 @@ class Account:
             return True
 
 
-    def withdraw(self,amount):
+    def withdraw(self,amount, balance):
+        self.__amount = amount
+        self.__account_balance = balance
         if amount <= 0:
             return False
         else:
-            account_balance = account_balance - amount
+            aself.__account_balance = balance - amount
             return True
 
 
