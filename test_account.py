@@ -1,4 +1,3 @@
-import pytest
 from account import *
 
 class Test:
@@ -6,24 +5,28 @@ class Test:
         self.p1 = Account('Jimmy', 50)
 
     def test_init(self):
-        assert self.p1.get_name() == "Jimmy"
-        assert self.p1.get_balance() == '50'
+        assert self.p1.get_name() == 'Jimmy'
+        assert self.p1.get_balance() == 50
 
     def test_deposit(self):
-        assert self.p1.deposit(amount=30) is True
-        assert self.p1.get_balance == 30
+        assert self.p1.deposit(30) is True
+        assert self.p1.get_balance() == 80
+
+        assert self.p1.deposit(0) is False
+        assert self.p1.get_balance() == 80
 
         assert self.p1.deposit(-30) is False
-        assert self.p1.get_balance == 30
+        assert self.p1.get_balance() == 80
 
     def test_withdraw(self):
         assert self.p1.withdraw(30) is True
-        assert self.p1.get_balance == 0
+        assert self.p1.get_balance() == 20
+
+        assert self.p1.deposit(0) is False
+        assert self.p1.get_balance() == 20
 
         assert self.p1.withdraw(-30) is False
-        assert self.p1.get_balance == 0
+        assert self.p1.get_balance() == 20
 
-
-
-if __name__ == '__main__':
-    pytest()
+        assert self.p1.withdraw(-60) is False
+        assert self.p1.get_balance() == 20
